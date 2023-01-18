@@ -28,3 +28,31 @@ x()
 
 test = decor(' 2 ')(test)
 test()
+
+
+# Декорирование нескольких функций одновременно +++++++++++++++++++++++++++++++
+
+def groop(*func):
+    def wrapper():
+        print('+++ инструкции обертки +++')
+        for function in func: function()
+        print('+++ инструкции обертки +++\n')
+    return wrapper
+
+
+def one(): print('...   Первая функция   ...')
+
+def two(): print('...   Вторая функция   ...')
+
+def three(): print('...   Третья функция   ...')
+
+
+all_func = groop(one, two, three)
+all_func()
+
+
+two_func = groop(one, two)
+two_func()
+
+one_func = groop(one)
+one_func()
