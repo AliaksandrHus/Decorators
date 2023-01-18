@@ -56,3 +56,29 @@ two_func()
 
 one_func = groop(one)
 one_func()
+
+
+# Изменение параметров функций с помощью декоратора++++++++++++++++++++++++++++
+
+def dec(func):
+    def wrapper(*args):
+
+        print('Вход:', args)
+        if args: new = [x if x > 0 else 1 for x in args]; print('Выход: ', end=''); func(*new)
+        else: func(*args)
+
+    return wrapper
+
+
+@dec
+def temp(x, y):
+    print(x, y, '\n')
+
+
+temp(100, 200)
+
+temp(-5, - 10)
+
+temp(-20, 30)
+
+
